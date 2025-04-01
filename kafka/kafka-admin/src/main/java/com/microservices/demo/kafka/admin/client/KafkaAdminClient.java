@@ -51,7 +51,21 @@ public class KafkaAdminClient {
         checkCreatedTopics();
     }
 
-    public void checkCreatedTopics() {
+
+
+    public void checkSchemaRegistry(){
+        int retryCount = 1;
+        Integer maxRetry = retryConfigData.getMaxAttempts();
+        int multiplier = retryConfigData.getMultiplier().intValue();
+        Long sleepTimeMs = retryConfigData.getSleepTimeMs();
+        while (!getSchemaRegistryStatus().is2xxSuccessful()){
+            checkMaxRetry(retryCount++,maxRetry);
+            sleep(sleepTimeMs);
+            sleepTimeMs*=multiplier;
+        }
+    }
+
+    private void checkCreatedTopics() {
         Collection<TopicListing> topics = getTopics();
         int retryCount = 1;
         Integer maxRetry = retryConfigData.getMaxAttempts();
@@ -64,18 +78,6 @@ public class KafkaAdminClient {
                 sleepTimeMs*=multiplier;
                 topics=getTopics();
             }
-        }
-    }
-
-    public void checkSchemaRegistry(){
-        int retryCount = 1;
-        Integer maxRetry = retryConfigData.getMaxAttempts();
-        int multiplier = retryConfigData.getMultiplier().intValue();
-        Long sleepTimeMs = retryConfigData.getSleepTimeMs();
-        while (!getSchemaRegistryStatus().is2xxSuccessful()){
-            checkMaxRetry(retryCount++,maxRetry);
-            sleep(sleepTimeMs);
-            sleepTimeMs*=multiplier;
         }
     }
 
