@@ -10,10 +10,8 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.ignoringRequestMatchers(
-                "/encrypt/**", "/decrypt/**"
-        ));
-
-        return http.build();
+        return http.csrf(csrf -> csrf.ignoringRequestMatchers(
+                "/encrypt/**", "/decrypt/**","/actuator/**"
+        )).build();
     }
 }

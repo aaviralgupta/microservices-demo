@@ -16,7 +16,7 @@ spring:
           uri: https://github.com/aaviralgupta/config-server-repository
           default-label: main
           username: aaviralgupta
-          password: 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
+          password: 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
           clone-on-start: true
     fail-fast: true
   security:
@@ -24,4 +24,4 @@ spring:
       name: spring_cloud_user
       password: '{cipher}b05a9d6d3437611c3e9f2048e1059c489d6c26b969b4c8f3944faa0d0deaff38'
 encrypt:
-  key: secretKey
+  key: ${ENCRYPT_KEY}

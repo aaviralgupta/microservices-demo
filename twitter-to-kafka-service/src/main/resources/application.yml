@@ -17,4 +17,4 @@ log:
 twitter-to-kafka-service:
   enable-mock-tweets: true
 encrypt:
-  key: secretKey
+  key: ${ENCRYPT_KEY}
