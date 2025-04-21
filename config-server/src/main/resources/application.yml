@@ -16,7 +16,7 @@ spring:
           uri: https://github.com/aaviralgupta/config-server-repository
           default-label: main
           username: aaviralgupta
-          password: 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
+          password: ${GITHUB_KEY}
           clone-on-start: true
     fail-fast: true
   security:

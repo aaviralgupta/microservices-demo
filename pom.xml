@@ -19,7 +19,8 @@
 		<module>kafka</module>
 		<module>common-config</module>
 		<module>config-server</module>
-	</modules>
+        <module>kafka-to-elastic-service</module>
+    </modules>
 	<packaging>pom</packaging>
 	<url/>
 	<licenses>
@@ -50,7 +51,7 @@
 		<twitter4j-version>4.0.7</twitter4j-version>
 		<lombok.version>1.18.30</lombok.version>
 		<spring-kafka.version>3.2.2</spring-kafka.version>
-		<kafka-avro-serializer.version>7.7.0</kafka-avro-serializer.version>
+		<kafka-avro-serializer.version>7.9.0</kafka-avro-serializer.version>
 		<avro.version>1.12.0</avro.version>
 		<jakarta-annotation-api.version>2.1.1</jakarta-annotation-api.version>
 		<spring-cloud.version>4.2.1</spring-cloud.version>
@@ -81,6 +82,11 @@
 			<dependency>
 				<groupId>com.microservices.demo</groupId>
 				<artifactId>kafka-producer</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microservices.demo</groupId>
+				<artifactId>kafka-consumer</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -138,6 +144,12 @@
 				<version>${spring-cloud-dependencies.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>io.confluent</groupId>
+				<artifactId>kafka-avro-serializer</artifactId>
+				<version>${kafka-avro-serializer.version}</version>
 			</dependency>
 
 			<dependency>
