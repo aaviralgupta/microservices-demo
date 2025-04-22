@@ -10,7 +10,7 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>elastic-index-module</artifactId>
+    <artifactId>elastic-index-client</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.microservices.demo</groupId>

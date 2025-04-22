@@ -1,30 +1,10 @@
-{
-  "namespace": "com.microservices.demo.avro.model",
+{"namespace": "com.microservices.demo.avro.model",
   "type": "record",
   "name": "TwitterAvroModel",
   "fields": [
-    {
-      "name": "userId",
-      "type": {
-        "type": "long"
-      }
-    },
-    {
-      "name": "id",
-      "type": {
-        "type": "long"
-      }
-    },
-    {
-      "name": "text",
-      "type": ["string", "null"]
-    },
-    {
-      "name": "createdAt",
-      "type": {
-        "type": "long",
-        "logicalType": "timestamp-millis"
-      }
-    }
+    {"name": "userId", "type": "long"},
+    {"name": "id", "type": "long"},
+    {"name": "text", "type": ["null", "string"]},
+    {"name": "createdAt", "type": ["null", "long"], "logicalType": ["null", "date"]}
   ]
 }
