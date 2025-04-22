@@ -10,7 +10,7 @@ public class TwitterStatusToAvroTransformer {
     public TwitterAvroModel transform(Status status){
         return TwitterAvroModel.newBuilder()
                 .setId(status.getId())
-                .setCreatedAt(status.getCreatedAt().toInstant())
+                .setCreatedAt(status.getCreatedAt().getTime())
                 .setText(status.getText())
                 .setUserId(status.getUser().getId())
                 .build();
