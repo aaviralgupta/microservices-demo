@@ -5,8 +5,8 @@ import com.microservices.demo.elastic.model.index.impl.TwitterIndexModel;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Component
@@ -18,7 +18,7 @@ public class AvroToElasticModelTransformer {
                         .userId(avroModel.getUserId())
                         .id(String.valueOf(avroModel.getId()))
                         .text(avroModel.getText())
-                        .createdAt(LocalDateTime.ofInstant(Instant.ofEpochMilli(avroModel.getCreatedAt()),
+                        .createdAt(ZonedDateTime.ofInstant(Instant.ofEpochMilli(avroModel.getCreatedAt()),
                                 ZoneId.systemDefault()))
                         .build()
                 ).toList();

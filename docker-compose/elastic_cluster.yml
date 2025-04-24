@@ -7,6 +7,8 @@ services:
       - node.name=elastic-1
       - cluster.name=es-twitter-cluster
       - discovery.seed_hosts=elastic-2,elastic-3
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
       - cluster.initial_master_nodes=elastic-1,elastic-2,elastic-3
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -26,6 +28,8 @@ services:
       - node.name=elastic-2
       - cluster.name=es-twitter-cluster
       - discovery.seed_hosts=elastic-1,elastic-3
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
       - cluster.initial_master_nodes=elastic-1,elastic-2,elastic-3
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -43,6 +47,8 @@ services:
       - node.name=elastic-3
       - cluster.name=es-twitter-cluster
       - discovery.seed_hosts=elastic-1,elastic-2
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
       - cluster.initial_master_nodes=elastic-1,elastic-2,elastic-3
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
