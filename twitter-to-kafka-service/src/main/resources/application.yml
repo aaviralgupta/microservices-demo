@@ -13,8 +13,5 @@ spring:
 
 log:
   app-name: twitter-to-kafka-service
-
-twitter-to-kafka-service:
-  enable-mock-tweets: true
 encrypt:
   key: ${ENCRYPT_KEY}
