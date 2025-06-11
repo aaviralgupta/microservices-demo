@@ -2,7 +2,6 @@ package com.microservices.demo.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Data
@@ -11,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class ElasticQueryWebClientConfigData {
 
     private WebClient webclient;
+    private Query queryByText;
     @Data
     public static class WebClient {
         private Integer connectTimeoutMs;
@@ -20,6 +20,13 @@ public class ElasticQueryWebClientConfigData {
         private String acceptType;
         private String contentType;
         private String baseUrl;
+    }
+
+    @Data
+    public static class Query {
+        private String method;
+        private String uri;
+        private String accept;
     }
 
 }
