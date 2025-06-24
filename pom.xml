@@ -5,8 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>3.4.7</version>
+		<relativePath/>
 	</parent>
 	<groupId>com.microservices.demo</groupId>
 	<artifactId>microservices-demo</artifactId>
@@ -24,6 +24,8 @@
 		<module>common-util</module>
         <module>elastic-query-service</module>
 		<module>elastic-query-web-client</module>
+		<module>elastic-query-service-common</module>
+		<module>elastic-query-web-client-common</module>
 	</modules>
 	<packaging>pom</packaging>
 	<url/>
@@ -49,7 +51,7 @@
 
 	<properties>
 		<java.version>17</java.version>
-		<spring-boot-version>3.4.5</spring-boot-version>
+		<spring-boot-version>3.4.7</spring-boot-version>
 		<spring-retry.version>2.0.10</spring-retry.version>
 		<maven-compiler-plugin-version>3.13.0</maven-compiler-plugin-version>
 		<twitter4j-version>4.0.7</twitter4j-version>
@@ -106,6 +108,16 @@
 			<dependency>
 				<groupId>com.microservices.demo</groupId>
 				<artifactId>elastic-query-client</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microservices.demo</groupId>
+				<artifactId>elastic-query-service-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microservices.demo</groupId>
+				<artifactId>elastic-query-web-client-common</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -169,20 +181,11 @@
 				<version>${spring-boot-version}</version>
 			</dependency>
 
-
 			<dependency>
 				<groupId>org.elasticsearch</groupId>
 				<artifactId>elasticsearch</artifactId>
 				<version>${elastic.version}</version>
 			</dependency>
-
-			<!--dependency>
-				<groupId>org.elasticsearch.client</groupId>
-				<artifactId>elasticsearch-rest-high-level-client</artifactId>
-				<version>${elastic.version}</version>
-			</dependency-->
-
-
 
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
