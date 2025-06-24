@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,8 @@ import java.util.List;
 public class ElasticDocumentController {
 
     private final ElasticQueryService elasticQueryService;
-
+    @Value("${server.port}")
+    private String port;
 
     public ElasticDocumentController(ElasticQueryService elasticQueryService) {
         this.elasticQueryService = elasticQueryService;
@@ -92,7 +94,7 @@ public class ElasticDocumentController {
     public ResponseEntity<List<ElasticQueryServiceResponseModel>> getDocumentWithText(
             @RequestBody @Valid ElasticQueryServiceRequestModel request) {
         List<ElasticQueryServiceResponseModel> response = elasticQueryService.getDocumentByText(request.getText());
-        log.info("Elasticsearch returned {} documents for text {}",response.size(), request.getText());
+        log.info("Elasticsearch returned {} documents for text {} on port {}",response.size(), request.getText(), port);
         return ResponseEntity.ok(response);
     }
 

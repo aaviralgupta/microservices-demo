@@ -10,6 +10,12 @@ spring:
       name: twitter-to-kafka-service,config-client
       username: spring_cloud_user
       password: '{cipher}b05a9d6d3437611c3e9f2048e1059c489d6c26b969b4c8f3944faa0d0deaff38'
+      fail-fast: true
+      retry:
+        initial-interval: 1500
+        multiplier: 1.5
+        max-attempts: 10000
+        max-interval: 1000
 
 log:
   app-name: twitter-to-kafka-service
