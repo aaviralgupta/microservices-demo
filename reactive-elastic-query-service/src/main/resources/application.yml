@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: reactive-elastic-query-service
+  profiles:
+    active: reactive_elastic_query
+  config:
+    import: 'configserver:'
+  cloud:
+    config:
+      name: reactive-elastic-query-service,config-client
+      username: spring_cloud_user
+      password: '{cipher}b05a9d6d3437611c3e9f2048e1059c489d6c26b969b4c8f3944faa0d0deaff38'
