@@ -5,6 +5,8 @@ import com.microservices.demo.elastic.query.service.common.model.ElasticQuerySer
 import com.microservices.demo.reactive.elastic.query.service.business.ElasticQueryService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +23,9 @@ public class ElasticDocumentController {
         this.elasticQueryService = elasticQueryService;
     }
 
+    @PostMapping(value = "/get-document-by-text",
+            produces = MediaType.TEXT_EVENT_STREAM_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public Flux<ElasticQueryServiceResponseModel> getDocumentByText(
             @RequestBody @Valid ElasticQueryServiceRequestModel requestModel) {
         Flux<ElasticQueryServiceResponseModel> response = elasticQueryService.getDocumentByText(requestModel.getText());
