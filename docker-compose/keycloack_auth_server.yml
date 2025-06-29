@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:${POSTGRES_VERSION:-latest}  # Use a specific, stable version
+    container_name: keycloak_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - keycloak_network
+
+  keycloak-authorization-server:
+    image: quay.io/keycloak/keycloak:${KEYCLOAK_VERSION:-latest}
+    hostname: keycloak-server
+    restart: always
+    command: start-dev # Use `start` for production
+    depends_on:
+      - postgres
+    environment:
+      # Keycloak admin credentials
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      # Database connection configuration
+      KC_DB: postgres # Specify the database vendor
+      # Use the service name 'postgres' as the hostname for the database.
+      # Docker's internal DNS will resolve this to the IP of the 'postgres' container.
+      KC_DB_URL: jdbc:postgresql://postgres/${POSTGRES_DB}
+      KC_DB_USERNAME: ${POSTGRES_USER}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      # Keycloak hostname and configuration
+      # Use `start-dev` for development, which is less strict about hostname and HTTPS.
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: 8080
+      KC_HOSTNAME_STRICT_BACKCHANNEL: false
+      KC_HTTP_ENABLED: true
+      KC_HEALTH_ENABLED: true
+      KC_LOG_LEVEL: INFO
+    ports:
+      # Map the Keycloak container's 8080 port to the host's 8080 port.
+      - "8080:8080"
+    networks:
+      - keycloak_network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  keycloak_network:
+    driver: bridge
